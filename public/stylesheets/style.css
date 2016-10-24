@@ -1,0 +1,112 @@
+body {
+  /*padding: 50px;*/
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #607D8B;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  font-family: 'Revalia', monospace;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+h5 {
+  text-decoration: underline;
+  font-size: 125%;
+}
+
+a{
+  color:#9E9E9E;
+}
+
+.forum-genre-title {
+    color: #212121;
+}
+
+.forum-row-t1 {
+  background-color: #607D8B !important;
+  border: 1px inset black;
+  height: 15%;
+}
+
+.comment-row-t1 {
+  background-color: #607D8B !important;
+  border: 1px inset black;
+  height: 25%;
+}
+
+.forum-row-t2 {
+  background-color: #607D8B !important;
+  border: 1px inset black;
+  height: 15%;
+}
+
+.nav {
+  background-color: #455A64;
+  height: 15%;
+}
+
+.banner {
+  height: 10%;
+}
+
+.footer {
+  background-color: #455A64 !important;
+  height: 15%;
+}
+
+.mainForumTitle {
+  text-decoration: underline;
+}
+
+.genreForumTitle {
+  text-decoration: underline;
+  font-size: 125%;
+}
+
+.genrePostTitle {
+  font-size: 110%;
+}
+.genreForumPost {
+  font-size: 90%;
+  text-decoration: underline;
+}
+
+.modalComments {
+  background-color: #455A64 !important;
+}
+
+.modalEditComment {
+  background-color: #455A64 !important;
+}
+
+.modalAddComment {
+  background-color: #455A64 !important;
+  opacity: 50% !important;
+}
+
+.modalFooter {
+  background-color: #455A64 !important ;
+}
+
+.modalEditPost {
+  background-color: #455A64 !important;
+}
+
+.modalPost {
+  background-color: #455A64 !important;
+  opacity: 50% !important;
+}
+
+.modal{
+  width: 80% !important;
+  overflow: hidden;
+}
+
+#forum-header {
+  background-color: #9E9E9E;
+  height: 10%;
+  border: 1px inset black;
+}

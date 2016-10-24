@@ -1,0 +1,224 @@
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col l6 m4 s10 offset-l2 offset-m4">
+                <div class="">
+                    <h4>{{paramsGenre}}</h4>
+                </div>
+            </div>
+            <div class="col l4 m4 s12">
+                <div class="right-align">
+                    <a class="waves-effect waves-light btn modal-trigger" href="#modalPost">New Post</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- New Post Modal -->
+<div id="modalPost" class="modal modal-fixed-footer">
+    <div class="modal-content modalPost">
+        <div class="row">
+            <div class="col l6 m6 s12 offset-l3 offset-m3 offset-s3">
+                <div class="center-align">
+                    <h4>New Post</h4>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- stuff here -->
+        <div class="row">
+            <form action="/posts/{{dbGenre}}" method="post">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input placeholder="Title" id="title" name="title" type="text" class="validate" required>
+                        <label for="title" data-error="Please Enter a Title for the Post.">Title</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                        <textarea id="post" name="post" type="text" class="materialize-textarea validate" required></textarea>
+                        <label for="post" data-error="Please Enter a Post Body.">Post</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="section">
+                        <div class="center-align input-field">
+                            <button type="submit" class="btn btn-warning btn-lg">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer modalPost">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">exit</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="section">
+        {{#each genrePosts}}
+            <div class="row forum-row-t1 z-depth-2">
+                <div class="col l12 m12 s12">
+                    <div class="container">
+                        <p class="genrePostTitle center-align">
+                            {{this.title}}
+                            <span class="right"><a href="/posts/delete/{{this.id}}/{{../paramsGenre}}">Delete</a></span>
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="container">
+                        <div class="col l10 m12 s12">
+                            <p class="center-align">
+                                {{this.post}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="center-align">
+                            <a class="waves-effect waves-light btn modal-trigger" href="#modal{{@index}}">Comments</a>
+                            <a class="waves-effect waves-light btn modal-trigger" href="#modalPostEdit{{@index}}">Edit</a>
+                        </div>
+                        <div id="modal{{@index}}" class="modal modal-fixed-footer modalComments">
+                            <div class="modal-content">
+                                <h4 class="center-align">Comments</h4>
+                                <hr>
+                                {{#each this.postComments}}
+                                    <div class="row comment-row-t1 z-depth-2">
+                                        <div class="col l10 m10 s10">
+                                            <div class="container">
+                                                <div class="">
+                                                    <p>
+                                                        {{this.comment}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col l2 m2 s2 offset-l12 offset-m12 offset-s12">
+                                                <a href="/comments/delete/{{this.id}}/{{../../paramsGenre}}">X</a>
+                                                <a class="waves-effect waves-light modal-trigger" href="#modalCommentEdit{{this.id}}">Edit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="modalCommentEdit{{this.id}}" class="modal modal-fixed-footer modalEditComment">
+                                        <div class="modal-content">
+                                            <h4 class="center-align">Edit Comment</h4>
+                                            <hr>
+                                            <!-- form goes here  -->
+                                            <form action="/comments/edit/{{this.id}}/{{../../paramsGenre}}" method="post">
+                                                <div class="row">
+                                                    <div class="input-field col l12 m12 s12">
+                                                        <textarea name="comment" type="text" placeholder="{{this.comment}}" class="materialize-textarea" data-error="Please Enter a Comment Body"></textarea>
+                                                        <label for="comment">Comment</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="section">
+                                                        <div class="center-align input-field">
+                                                            <button type="submit" class="btn btn-warning btn-lg">Edit</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col l4 m4 s4 offset-l8 offset-m8 offset-s8">
+                                                <div class="modal-footer modalFooter">
+                                                    <div class="row">
+                                                        <div class="col l2 m2 s2">
+                                                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Exit</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/each}}
+                            </div>
+                            <div class="row">
+                                <div class="col l4 m4 s4 offset-l8 offset-m8 offset-s8">
+                                    <div class="modal-footer modalFooter">
+                                        <div class="row">
+                                            <div class="col l2 m2 s2">
+                                                <!-- Modal Trigger -->
+                                                <a class="modal-trigger waves-effect waves-light btn right-align" href="#modalComment{{@index}}">Add Comment</a>
+                                            </div>
+                                            <div class="col l2 m2 s2">
+                                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Exit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="modalPostEdit{{@index}}" class="modal modal-fixed-footer modalEditPost">
+                            <div class="modal-content">
+                                <h4 class="center-align">Edit Post</h4>
+                                <hr>
+                                <!-- form goes here  -->
+                                <form action="/posts/edit/{{this.id}}/{{../paramsGenre}}" method="post">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input placeholder="{{this.title}}" name="title" type="text" class="validate">
+                                            <label for="title">Title</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col l12 m12 s12">
+                                            <textarea name="post" type="text" placeholder="{{this.post}}" class="materialize-textarea"></textarea>
+                                            <label for="post">Post</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="section">
+                                            <div class="center-align input-field">
+                                                <button type="submit" class="btn btn-warning btn-lg">Edit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="row">
+                                <div class="col l4 m4 s4 offset-l8 offset-m8 offset-s8">
+                                    <div class="modal-footer modalFooter">
+                                        <div class="row">
+                                            <div class="col l2 m2 s2">
+                                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Exit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="modalComment{{@index}}" class="modal modal-fixed-footer modalAddComment">
+                            <div class="modal-content">
+                                <h4>Add Comment</h4>
+                                <hr>
+                                <!-- stuff here -->
+                                <form action="/comments/{{this.id}}/{{../paramsGenre}}" method="post">
+                                    <div class="row">
+                                        <div class="input-field col l12 m12 s12">
+                                            <textarea id="comment" name="comment" type="text" class="materialize-textarea" required></textarea>
+                                            <label for="comment" data-error="Please Enter a Comment Body.">Comment</label>
+                                        </div>
+                                    </div>
+                                    <div class="section">
+                                        <div class="center-align input-field">
+                                            <button type="submit" class="btn btn-warning btn-lg">Add</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer modalFooter">
+                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Exit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

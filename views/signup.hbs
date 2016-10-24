@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="section">
+    <div class="center-align">
+    <h3>Sign-up</h3>
+  </div>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+      <form action="/signup" method="post">
+        <div class="row">
+          <div class="input-field col s6">
+            <input placeholder="First Name" name="firstName" id="first_name" type="text" class="validate" pattern="^[_A-z]{1,30}$" required>
+            <label for="firstName" data-error="Letters only, and a max of 30 Characters">First Name</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="lastName" name="lastName" type="text" class="validate" pattern="^[_A-z]{1,30}$" required>
+            <label for="lastName" data-error="Letters only, and a max of 30 Characters">Last Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="email" type="email" name="email" class="validate"  required>
+            <label for="email" data-error="Please Enter a Valid Email">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="password" type="password" name="password" class="validate" pattern=".{8,}" required>
+            <label for="password" data-error="Password must be at least 8 characters long.">Password</label>
+          </div>
+        </div>
+        <div class="section">
+          <div class="center-align">
+              <button type="submit" class="btn btn-warning btn-lg">Signup</button>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
